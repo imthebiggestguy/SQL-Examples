@@ -20,3 +20,20 @@ FROM patients
 GROUP BY first_name 
 HAVING COUNT(*)=1
 ;
+
+
+--Show the city and the total number of patients in the city in the order from most to least patients.
+SELECT city, count(patient_id)
+FROM patients
+GROUP BY city
+ORDER BY COUNT(patient_ID) DESC
+;
+
+
+--Show patient_id, first_name, last_name from patients whos primary_diagnosis is 'Dementia'. Primary diagnosis is stored in the admissions table.
+SELECT patients.patient_id, first_name, last_name 
+FROM patients
+JOIN admissions
+ON patients.patient_id = admissions.patient_id
+WHERE primary_diagnosis = 'Dementia'
+;
